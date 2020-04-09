@@ -31,7 +31,7 @@ module.exports.paginate = async ( model, res, currentpage, perpage, criteria, po
           responses.output(200, "Records retrieved successfully", data, meta)
         );
       } else {
-        return res.status(200).send({ message: "No results found.", data: [] });
+        return res.status(200).send({ message: "No result found.", data: [] });
       }
     } catch (err) {
       return res.send(
