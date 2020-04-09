@@ -1,5 +1,5 @@
 {
-  "name": "@karosi/paginate-mongoose-data",
+  "name": "paginate-mongoose-data",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
