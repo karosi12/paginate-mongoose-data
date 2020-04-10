@@ -1,4 +1,12 @@
 module.exports.responses = {
+    success: (errorCode, data, message) => {
+      return {
+        error: false,
+        errorCode,
+        data,
+        message
+      };
+    },
     error: (statusCode, message) => {
       const errorMessage = {
         error: true,
