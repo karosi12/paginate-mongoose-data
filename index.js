@@ -14,7 +14,7 @@ module.exports.paginate = async ( model, currentpage, perpage, criteria, populat
         .populate(`${populateField}`)
         .limit(pagination.limit)
         .skip(pagination.page * pagination.limit);
-      if (data.length) {
+      if (data.length > 0) {
         const numberOfPages = Math.ceil(count / pagination.limit);
         const nextPage = parseInt(pagination.page) + 1;
         const meta = {
@@ -28,7 +28,7 @@ module.exports.paginate = async ( model, currentpage, perpage, criteria, populat
         };
         return responses.output(200, "Records retrieved successfully", data, meta)
       } else {
-        return responses.success(200, {data: []}, "No data found");
+        return responses.success(200, data, "No data found");
       }
     } catch (err) {
       return  responses.error(500, `Error getting data ${err.message}`)
