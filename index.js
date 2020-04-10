@@ -1,4 +1,20 @@
 const responses = require("./helper/responses").responses;
+
+/**
+ * @param {string} param1 - Normal
+ * @param {string|number|boolean} param2 - Multiple types
+ * @param {null} param3 - (I know this is strange param.)
+ * @param {string|number|null} param4 - Multiple types includes `null`
+ * @param {Object} param5 - Object type
+ * @param {Array} param6 - Array type
+ * @param {jQuery} param7 - Another type
+ * @param {MyClass} param8 - Another type
+ * @param {string|number|Array} param9 - Multiple types includes `Array`
+ * @param {?string} param10 - Nullable type
+ * @param {string} [param11] - Optional
+ * @returns {?string} result
+ */
+
 module.exports.paginate = async ( model, currentpage, perpage, criteria, populateField ) => {
     try {
       if (!model) return responses.error(400, 'Model name is required');
