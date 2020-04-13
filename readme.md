@@ -28,7 +28,7 @@ import { Users } from '../models/user';
 ```
 
 ```javascript
-// Using Node.js require()
+// Using ES6 imports
 import { Users } from '../models/user'
 import { Response, Request } from 'express';
 import { paginate } from 'paginate-mongoose-data';
@@ -48,7 +48,7 @@ class UserController {
 ```
 
 ```javascript
-// Using ES6 imports
+// Using Node.js require()
 const Users = require('../models/user');
 const Paginate = require('paginate-mongoose-data').paginate;
 const list = async(req, res) => {
