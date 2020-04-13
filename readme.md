@@ -18,6 +18,16 @@ npm install paginate-mongoose-data --save
 ## Usage
 
 ```javascript
+import { paginate } from 'paginate-mongoose-data';
+import { Users } from '../models/user';
+
+  paginate(Users) // Model
+  paginate(Users, 1) // parameters Model, page number,
+  paginate(Users, 1, 5) // parameters Model, page number, data limit
+  paginate(Users, 1, 5, {query}) // parameters Model, search
+```
+
+```javascript
 // Using Node.js require()
 import { Users } from '../models/user'
 import { Response, Request } from 'express';
@@ -58,7 +68,11 @@ module.exports = list;
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+Please make sure to run test.
+
+```bash
+npm test
+```
 
 
 ## Authors
