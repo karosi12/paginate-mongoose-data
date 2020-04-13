@@ -5,6 +5,7 @@ This package is use to paginate mongodb data.
 [![NPM](https://nodei.co/npm/paginate-mongoose-data.png)](https://nodei.co/npm/paginate-mongoose-data/)
 
 ## Installation
+
 First install [Node.js](http://nodejs.org/) and [MongoDB](https://www.mongodb.org/downloads). Then:
 
 Use the package manager [npm](https://www.npmjs.com/package/paginate-mongoose-data) to install paginate-mongoose-data.
