@@ -1,26 +1,20 @@
 const responses = require("./helper/responses").responses;
 
 /**
- * @param {string} param1 - Normal
- * @param {string|number|boolean} param2 - Multiple types
- * @param {null} param3 - (I know this is strange param.)
- * @param {string|number|null} param4 - Multiple types includes `null`
- * @param {Object} param5 - Object type
- * @param {Array} param6 - Array type
- * @param {jQuery} param7 - Another type
- * @param {MyClass} param8 - Another type
- * @param {string|number|Array} param9 - Multiple types includes `Array`
- * @param {?string} param10 - Nullable type
- * @param {string} [param11] - Optional
- * @returns {?string} result
+ * @param {string} param1 - Model
+ * @param {number} param2 - Page
+ * @param {number} param3 - Limit
+ * @param {Object} param4 - (Criteria or Search)
+ * @param {Array} param5 - Populate field
+ * @returns {Object} result
  */
 
-module.exports.paginate = async ( model, currentpage, perpage, criteria, populateField ) => {
+module.exports.paginate = async ( model, currentpage, limit, criteria, populateField ) => {
     try {
       if (!model) return responses.error(400, 'Model name is required');
       const pagination = {
         page: parseInt(currentpage) || 0,
-        limit: parseInt(perpage) || 20
+        limit: parseInt(limit) || 20
       };
       const search = criteria || {};
       const count = await model.countDocuments(search);
@@ -35,9 +29,9 @@ module.exports.paginate = async ( model, currentpage, perpage, criteria, populat
         const nextPage = parseInt(pagination.page) + 1;
         const meta = {
           page: pagination.page,
-          perPage: pagination.limit,
+          perPage: data.length,
           previousPage:
-            pagination.page > 1 ? parseInt(pagination.page) - 1 : false,
+            pagination.page > 0 ? parseInt(pagination.page) - 1 : false,
           nextPage: numberOfPages >= nextPage ? nextPage : false,
           pageCount: numberOfPages,
           total: count
