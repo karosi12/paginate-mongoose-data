@@ -1,9 +1,10 @@
 {
   "name": "paginate-mongoose-data",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "author": "Kayode Adeyemi",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "scripts": {
     "test": "mocha test/*.spec.js --timeout 50000 --exit"
   },
