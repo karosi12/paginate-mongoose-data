@@ -2,16 +2,14 @@ const responses = require("./helper/responses").responses;
 
 /**
  * @param {string} param1 - Model
- * @param {number} param2 - Page
- * @param {number} param3 - Limit
- * @param {Object} param4 - (Criteria or Search)
- * @param {Array} param5 - Populate field
+ * @param {Object} param2 - populateData
  * @returns {Object} result
  */
 
-module.exports.paginate = async ( model, currentpage, limit, criteria, populateField ) => {
+module.exports.paginate = async ( model, populateData = {}) => {
     try {
       if (!model) return responses.error(400, 'Model name is required');
+      const {currentpage, limit, criteria, populateField } = populateData;
       const pagination = {
         page: parseInt(currentpage) || 0,
         limit: parseInt(limit) || 20
@@ -21,7 +19,7 @@ module.exports.paginate = async ( model, currentpage, limit, criteria, populateF
       const data = await model
         .find(search)
         .sort({createdAt: -1})
-        .populate(`${populateField}`)
+        .populate(populateField)
         .limit(pagination.limit)
         .skip(pagination.page * pagination.limit);
       if (data.length > 0) {
