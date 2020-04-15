@@ -7,8 +7,6 @@ This package is use to paginate mongodb data.
 ## Installation
 First install [Node.js](http://nodejs.org/) and [MongoDB](https://www.mongodb.org/downloads). Then:
 
-First install [Node.js](http://nodejs.org/) and [MongoDB](https://www.mongodb.org/downloads). Then:
-
 Use the package manager [npm](https://www.npmjs.com/package/paginate-mongoose-data) to install paginate-mongoose-data.
 
 ```bash
