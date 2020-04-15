@@ -71,11 +71,6 @@ const populateField = [
 ];
 
 paginate(Users, { populateField }); // parameters => Model, Paginate object with populated fields
-
-/** Reponse sample
- * 
- **/
-
 ```
 
 ```javascript
