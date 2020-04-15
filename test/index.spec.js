@@ -115,7 +115,7 @@ describe("#Paginate-mongoose", () => {
             }
         });
 
-        it("#Paginate nested data", async () => {
+        it("#Populate nested data", async () => {
             try {
                 const populateField = [
                     {
@@ -128,6 +128,34 @@ describe("#Paginate-mongoose", () => {
                       populate: { 
                           path: 'userId'
                         }
+                    }
+                  ];
+                const music = await Paginate(MusicModel, {populateField});
+                expect(music.error).to.eql(false);
+                expect(music.statusCode).to.eql(200);
+                expect(music.message).to.eql('Records retrieved successfully');
+                expect(music).to.have.property('meta');
+                expect(music.meta).to.have.property('page');
+                expect(music.meta).to.have.property('perPage');
+                expect(music.meta).to.have.property('previousPage');
+                expect(music.meta).to.have.property('nextPage');
+                expect(music.meta).to.have.property('pageCount');
+                expect(music.meta).to.have.property('total');
+            } catch (error) {
+                throw new Error(JSON.stringify(error));
+            }
+        });
+
+        it("#Populate field data", async () => {
+            try {
+                const populateField = [
+                    {
+                      path: "userId",
+                      select: "userName"
+                    },
+                    {
+                      path: "categoryId",
+                      select: "name",
                     }
                   ];
                 const music = await Paginate(MusicModel, {populateField});
