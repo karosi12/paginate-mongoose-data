@@ -5,6 +5,7 @@ This package is use to paginate mongodb data.
 [![NPM](https://nodei.co/npm/paginate-mongoose-data.png)](https://nodei.co/npm/paginate-mongoose-data/)
 
 ## Installation
+First install [Node.js](http://nodejs.org/) and [MongoDB](https://www.mongodb.org/downloads). Then:
 
 First install [Node.js](http://nodejs.org/) and [MongoDB](https://www.mongodb.org/downloads). Then:
 
@@ -16,15 +17,60 @@ npm install paginate-mongoose-data --save
 ```
 
 ## Usage
-
 ```javascript
 import { paginate } from 'paginate-mongoose-data';
 import { Users } from '../models/user';
 
-  paginate(Users) // Model
-  paginate(Users, 1) // parameters Model, page number,
-  paginate(Users, 1, 5) // parameters Model, page number, data limit
-  paginate(Users, 1, 5, {query}) // parameters Model, search
+const limit: number; // limit number of data to fetch
+const currentpage: number; // current page of data to fetch
+const criteria: object = {field: value};
+const populateField = [
+  {
+    path: "userId",
+    select: "userName"
+  },
+  {
+    path: "categoryId",
+    select: "name",
+  }
+];
+
+paginate(Users); // Model is required, second parameter of object is optional
+
+// Model and query object
+paginate(Users, {
+    limit,
+    currentpage,
+    criteria
+}); // parameters => Model, Paginate object
+
+// Model and query object
+paginate(Users, {
+    limit,
+    currentpage,
+    criteria,
+    populateField
+}); // parameters => Model, Paginate object with populated fields
+```
+
+
+```javascript
+// How to populate nested object
+const populateField = [
+  {
+    path: "userId",
+    select: "userName"
+  },
+  {
+    path: "categoryId",
+    select: "name",
+    populate: {
+        path: 'userId'
+      }
+  }
+];
+
+paginate(Users, { populateField }); // parameters => Model, Paginate object with populated fields
 ```
 
 ```javascript
@@ -48,7 +94,7 @@ class UserController {
 ```
 
 ```javascript
-// Using Node.js require()
+// Using Nodejs require()
 const Users = require('../models/user');
 const Paginate = require('paginate-mongoose-data').paginate;
 const list = async(req, res) => {
